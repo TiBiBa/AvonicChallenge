@@ -1,11 +1,12 @@
-validoptions = ['a', 's', 'd', 'q']
+from game import Game
+from utils import VALID_MENU_OPTIONS
 
 
-def initializegame():
-    print("Pokemon is being loaded...")
+def initialize_game():
+    game = Game()
 
 
-def startmenu():
+def start_menu():
     print("Welcome, to Pokemon!")
     print("Select one of the following options:\n")
 
@@ -15,9 +16,9 @@ def startmenu():
     print("(q) Quit")
 
     choice = input("What would you like to do?: ")
-    if choice not in validoptions:
+    if choice not in VALID_MENU_OPTIONS:
         print("You made an invalid choice, try again!\n\n")
-        return startmenu()
+        return start_menu()
     else:
         if choice == 'q':
             print("Thanks for playing!")
@@ -25,6 +26,7 @@ def startmenu():
         else:
             print("Still working on this...")
 
+
 if __name__ == "__main__":
-    initializegame()
-    startmenu()
+    initialize_game()
+    start_menu()
