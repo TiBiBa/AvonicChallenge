@@ -22,6 +22,9 @@ class Battle:
     def computer_attack(self):
         pass
 
+    def calculate_damage(self):
+        pass
+
     def set_starter(self):
         if self._player.get_speed() >= self._opponent.get_speed():
             self._turn = 0
