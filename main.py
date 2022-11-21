@@ -22,7 +22,7 @@ class Main:
         # We can only start a fight if we have already selected a Pokémon
         if self.game.get_selected_pokemon():
             print("(s) Start the fight")
-        print("(d) List all Pokemons")
+        print("(d) List all Pokémons")
         print("(q) Quit")
 
         choice = input("\nWhat would you like to do? ")
