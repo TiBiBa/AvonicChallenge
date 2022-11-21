@@ -1,5 +1,6 @@
 from game import Game
 
+
 # A short overview for my own clarity:
 # - We have a main, that contains a game
 # - A game consist of Pokémons
@@ -11,7 +12,7 @@ from game import Game
 # - Leave moves out-of-scope for now -> focus on the actual stats comparison and fight
 
 class Main:
-    valid_options = ['a', 's', 'd', 'q']
+    valid_options = {'a', 's', 'd', 'q'}
 
     def __init__(self):
         self.game = Game()
@@ -44,6 +45,7 @@ class Main:
                 exit(1)
         # Always call the menu again so we don't exit the program without explicitly choosing to do so
         self.menu()
+
 
 if __name__ == "__main__":
     main = Main()
