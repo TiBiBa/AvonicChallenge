@@ -1,9 +1,11 @@
+import random
+from battle import Battle
+
+
 class Game:
     pokemons = []
-    # The user_pokemon should only contain a reference to the actual one -> the index number on the list
-    # We have to keep a copy of both the user Pokémon and the opponent to make sure we can reduce stats etc.
-    # Todo: Current idea: Let the "Battle pokemon" Inherit from the "Pokemon" class, add required attributes
     user_pokemon = None
+    opponent_pokemon = None
 
     def __init__(self):
         pass
@@ -17,7 +19,7 @@ class Game:
 
     def select_pokemon(self):
         self.list_pokemons()
-        choice = input("\nWhich Pokémon one would you like to choice? ")
+        choice = input("\nWhich Pokémon would you like to choice? ")
         try:
             choice = int(choice)
             if choice < 0 or choice > len(self.pokemons):
@@ -36,9 +38,10 @@ class Game:
         print(self.pokemons)
 
     def start_battle(self):
-        pass
-        if not self.user_pokemon:
-            print("You should not come here!")
-            exit(1)
-        # Select a random opponent that is DIFFERENT that our selection
-        # Compare speed, start turn-by-turn game
+        self.randomize_opponent()
+        battle = Battle()
+
+    def randomize_opponent(self):
+        self.opponent_pokemon = random.randint(0, len(self.pokemons))
+        if self.opponent_pokemon == self.user_pokemon:
+            self.randomize_opponent()

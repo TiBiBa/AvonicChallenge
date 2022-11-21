@@ -1,28 +1,24 @@
 class Pokemon:
     _name = ""
-    _type = ""  # this should be a value of a fixed list of options -> Todo: What would be best to store this?
-    _moves = []
+    _type = ""
     _health = 0
     _attack = 0
     _defense = 0
     _speed = 0
 
-    def __init__(self):
-        pass
+    def __init__(self, name, type, health, attack, defense, speed):
+        self._name = name
+        self._type = type
+        self._health = health
+        self._attack = attack
+        self._defense = defense
+        self._speed = speed
 
-    def set_stats(self, stats):
-        pass
-        # Set all stats on the current Pokémon
+    def get_name(self):
+        return self._name
 
-    def set_move(self, move):
-        if len(self.moves) == 4:
-            print("This pokemon already knows 4 moves, please remove one before you can add one!")
-        else:
-            print(move)
-            print("Learning a move...")
-
-    def get_moves(self):
-        return self._moves
+    def get_stats(self):
+        return {'health': self._health, 'attack': self._attack, 'defense': self._defense, 'speed': self._speed}
 
     def get_health(self):
         return self._health
