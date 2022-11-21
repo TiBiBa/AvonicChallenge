@@ -1,9 +1,10 @@
 class Pokemon:
 
     moves = []
+    stats = {}
 
     def __init__(self):
-        print("Pokemon created...")
+        pass
 
     def set_move(self, move):
         if len(self.moves) == 4:

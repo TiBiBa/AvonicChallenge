@@ -1,3 +1,6 @@
 class Move:
+
+    damage = 0
+
     def __init__(self):
-        print("Move created...")
+        pass
