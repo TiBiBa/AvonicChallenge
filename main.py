@@ -7,6 +7,9 @@ from game import Game
 # - A game can contain a Battle
 # - A battle contains two Pokémons
 
+# Considerations:
+# - Leave moves out-of-scope for now -> focus on the actual stats comparison and fight
+
 class Main:
     valid_options = ['a', 's', 'd', 'q']
 
@@ -33,7 +36,7 @@ class Main:
             if choice == 'a':
                 self.game.select_pokemon()
             elif choice == 's':
-                self.game.start_fight()
+                self.game.start_battle()
             elif choice == 'd':
                 self.game.list_pokemons()
             else:
