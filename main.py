@@ -42,7 +42,8 @@ class Main:
             else:
                 print("Thanks for playing!")
                 exit(1)
-
+        # Always call the menu again so we don't exit the program without explicitly choosing to do so
+        self.menu()
 
 if __name__ == "__main__":
     main = Main()
