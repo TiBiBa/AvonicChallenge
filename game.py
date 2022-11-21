@@ -39,7 +39,9 @@ class Game:
 
     def start_battle(self):
         self.randomize_opponent()
-        battle = Battle()
+        battle = Battle(self.pokemons[self.user_pokemon], self.pokemons[self.opponent_pokemon])
+        while not battle.is_finished():
+            battle.play_turn()
 
     def randomize_opponent(self):
         self.opponent_pokemon = random.randint(0, len(self.pokemons))

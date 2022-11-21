@@ -2,7 +2,6 @@ class Battle:
     _player = None
     _opponent = None
     _turn = 0
-    finished = False
 
     def __init__(self, player, opponent):
         self._player = player
