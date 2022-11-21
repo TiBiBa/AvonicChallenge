@@ -39,6 +39,7 @@ class Game:
 
     def start_battle(self):
         self.randomize_opponent()
+        # Todo: Not really nice that we pass these objects like this, is there a better?
         battle = Battle(self.pokemons[self.user_pokemon], self.pokemons[self.opponent_pokemon])
         while not battle.is_finished():
             battle.play_turn()
