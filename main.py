@@ -35,7 +35,7 @@ class Main:
         else:
             if choice == 'a':
                 self.game.select_pokemon()
-            elif choice == 's':
+            elif choice == 's' and self.game.get_selected_pokemon():
                 self.game.start_battle()
             elif choice == 'd':
                 self.game.list_pokemons()

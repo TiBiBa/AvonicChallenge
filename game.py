@@ -2,6 +2,7 @@ class Game:
     pokemons = {}
     # The user_pokemon should only contain a reference to the actual one -> the index number on the list
     # We have to keep a copy of both the user Pokémon and the opponent to make sure we can reduce stats etc.
+    # Todo: Current idea: Let the "Battle pokemon" Inherit from the "Pokemon" class, add required attributes
     user_pokemon = None
 
     def __init__(self):
