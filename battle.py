@@ -44,11 +44,13 @@ class Battle:
         print(f"[{'=' * remaining_health}{'_' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
 
     def user_attack(self):
+        print("It is your turn to attack!")
         self._player.list_moves()
         attack = input("What move do you want to use? ")
         self.attack(self._player, self._opponent)
 
     def computer_attack(self):
+        print("It is the opponents turn to attack!")
         sleep(2)
         self.attack(self._opponent, self._player)
 
@@ -61,10 +63,8 @@ class Battle:
     def play_turn(self):
         self.print_battle()
         if self._turn == 0:
-            print("It is your turn to attack!")
             self.user_attack()
         else:
-            print("It is the opponents turn to attack!")
             self.computer_attack()
         self.switch_turn()
 
@@ -91,7 +91,7 @@ class Battle:
     def is_finished(self):
         return self._player.get_health() == 0 or self._opponent.get_health() == 0
 
-    def get_winner(self):
+    def _get_winner(self):
         if not self.is_finished():
             print("The game is not finished yet!")
             return
@@ -101,4 +101,4 @@ class Battle:
 
     def show_conclusion(self):
         self.print_battle()
-        print(f"And the winner is.... {self.get_winner()}")
+        print(f"And the winner is.... {self._get_winner()}")
