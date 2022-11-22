@@ -33,12 +33,11 @@ class Main:
 
     def menu(self):
         print("Select one of the following options:\n")
-
         print("(a) Select a Pokémon")
         # We can only start a fight if we have already selected a Pokémon
         if self.game.pokemon_selected():
             print("(s) Start the fight")
-        print("(d) List all Pokémons")
+        print("(d) List all Pokémon")
         print("(q) Quit")
 
         choice = input("\nWhat would you like to do? ")
