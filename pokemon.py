@@ -1,7 +1,3 @@
-import csv
-from move import Move
-
-
 class Pokemon:
     _name = ""
     _category = ""
@@ -13,33 +9,15 @@ class Pokemon:
     _defense = 0
     _speed = 0
 
-    def __init__(self, name: str, category: str, health: int, attack: int, defense: int, speed: int):
+    def __init__(self, name: str, category: str, moves: list, health: int, attack: int, defense: int, speed: int):
         self._name = name
         self._category = category
+        self._moves = moves
         self._level = 50
         self._max_health = (self._health) = health
         self._attack = attack
         self._defense = defense
         self._speed = speed
-        self.initialize_moves()
-
-    def initialize_moves(self):
-        self._moves = []
-        with open("moves.csv", mode="r") as file:
-            content = csv.DictReader(file, delimiter=";")
-            for move in content:
-                self.add_move(move)
-
-    def add_move(self, data: dict):
-        try:
-            damage = int(data.get("damage"))
-            accuracy = int(data.get("accuracy"))
-        except ValueError:
-            print("One or more of your input values in invalid!")
-            print(f"The issue occurs at the following Move: {data.get('name')}")
-            exit(1)
-        move = Move(data.get("name"), damage, accuracy)
-        self._moves.append(move)
 
     def get_name(self):
         return self._name
