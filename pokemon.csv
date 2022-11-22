@@ -1,4 +1,4 @@
-Name;Type;HP;Attack;Defense;Speed
+name;type;health;attack;defense;speed
 Bulbasaur;Grass;45;49;49;45
 Ivysaur;Grass;60;62;63;60
 Venusaur;Grass;80;82;83;80
