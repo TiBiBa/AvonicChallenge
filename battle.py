@@ -1,4 +1,5 @@
 import copy
+from pokemon import Pokemon
 
 
 class Battle:
@@ -25,10 +26,19 @@ class Battle:
         self.play_turn()
 
     def print_battle(self):
-        print("We printen de battle!")
+        print("********************************************************************")
+        self.print_health_bar(self._player)
+        self.print_health_bar(self._opponent)
+        print("********************************************************************")
+
+    def print_health_bar(self, pokemon: Pokemon):
+        print(pokemon.get_name())
+        remaining_health = round((pokemon.get_health() / pokemon.get_health()) * 40)
+        print(f"[{'=' * remaining_health}{'-' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
 
     def user_attack(self):
-        pass
+        self._player.list_moves()
+        attack = input("What move do you want to use? ")
 
     def computer_attack(self):
         pass
@@ -36,14 +46,17 @@ class Battle:
     def set_starter(self):
         if self._player.get_speed() >= self._opponent.get_speed():
             self._turn = 0
-        self._turn = 1
+        else:
+            self._turn = 1
 
     def play_turn(self):
         # We print the battle before each move
         self.print_battle()
         if self._turn == 0:
+            print("It is your turn to attack!")
             self.user_attack()
         else:
+            print("It is the computers turn to attack!")
             self.computer_attack()
         self.switch_turn()
 

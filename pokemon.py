@@ -21,6 +21,9 @@ class Pokemon:
     def get_health(self):
         return self._health
 
+    def get_max_health(self):
+        return self._max_health
+
     def get_attack(self):
         return self._attack
 
@@ -29,3 +32,7 @@ class Pokemon:
 
     def get_speed(self):
         return self._speed
+
+    def list_moves(self):
+        # Todo: This is hard-coded for now, would be nice to use the Move class for this
+        print("(a) - Tackle")
