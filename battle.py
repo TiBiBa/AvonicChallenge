@@ -82,7 +82,7 @@ class Battle:
     # Loosely based on https://gamerant.com/pokemon-damage-calculation-help-guide/
     def calculate_damage(self, level: int, move_damage: int, accuracy: int, attack: int, defense: int):
         damage = 0
-        if random.randint(0, 100) < accuracy:
+        if random.randint(0, 100) <= accuracy:
             base_damage = ((((2 * level) / 5) + 2) * move_damage * (attack / defense) / 50) + 2
             damage = base_damage * 1.5 if random.random() <= self._critical_hit_change else base_damage
         return round(max(0, damage))
