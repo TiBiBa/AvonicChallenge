@@ -80,11 +80,12 @@ class Battle:
         self._turn = (self._turn + 1) % 2
 
     # Loosely based on https://gamerant.com/pokemon-damage-calculation-help-guide/
+    # The critical hit is based on https://bulbapedia.bulbagarden.net/wiki/Critical_hit#Damage
     def calculate_damage(self, level: int, move_damage: int, accuracy: int, attack: int, defense: int):
         damage = 0
         if random.randint(0, 100) <= accuracy:
             base_damage = ((((2 * level) / 5) + 2) * move_damage * (attack / defense) / 50) + 2
-            damage = base_damage * 1.5 if random.random() <= self._critical_hit_change else base_damage
+            damage = base_damage * ((2 * level + 5) / (level + 5)) if random.random() <= self._critical_hit_change else base_damage
         return round(max(0, damage))
 
     def attack(self, move: Move, attacker: Pokemon, defender: Pokemon):
