@@ -33,20 +33,25 @@ class Battle:
     def print_health_bar(self, pokemon: Pokemon):
         print(f"{pokemon.get_name()} - lvl.{pokemon.get_level()}")
         if pokemon.get_health() > 0:
-            remaining_health = round(
-                (pokemon.get_health() / pokemon.get_max_health()) * 40
-            )
+            remaining_health = round((pokemon.get_health() / pokemon.get_max_health()) * 40)
         else:
             remaining_health = 0
-        print(
-            f"[{'=' * remaining_health}{'_' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}"
-        )
+        print(f"[{'=' * remaining_health}{'_' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
 
     def user_attack(self):
         print("It is your turn to attack!")
         self._player.list_moves()
-        attack = input("What move do you want to use? ")
-        self.attack(self._player, self._opponent)
+        move = input("What move do you want to use? ")
+        try:
+            move = int(move)
+            if move < 1 or move > len(self._player.get_moves()):
+                print("This move is invalid, try again!")
+                self.user_attack()
+            else:
+                self.attack(self._player, self._opponent)
+        except ValueError:
+            print("This move is invalid, try again!")
+            self.user_attack()
 
     def computer_attack(self):
         print("It is the opponents turn to attack!")
@@ -84,14 +89,10 @@ class Battle:
         return round(max(0, damage))
 
     def attack(self, attacker: Pokemon, defender: Pokemon):
-        damage = self.calculate_damage(
-            attacker.get_level(), attacker.get_attack(), defender.get_defense()
-        )
+        damage = self.calculate_damage(attacker.get_level(), attacker.get_attack(), defender.get_defense())
         if damage > 0:
             defender.take_damage(damage)
-            print(
-                f"{attacker.get_name()} does {damage} damage to {defender.get_name()}"
-            )
+            print(f"{attacker.get_name()} does {damage} damage to {defender.get_name()}")
         else:
             print("Your attack missed or didn't do any damage!")
 
