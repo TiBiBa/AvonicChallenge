@@ -50,7 +50,7 @@ class Game:
             self.select_pokemon()
 
     def get_selected_pokemon(self):
-        return self._user_pokemon if self._user_pokemon else "You haven't selected a Pokémon yet!"
+        return self._user_pokemon if self._user_pokemon else None
 
     def list_pokemons(self):
         index = 1
@@ -66,6 +66,7 @@ class Game:
             self._battle.play_turn()
 
     def randomize_opponent(self):
-        self._opponent_pokemon = self._pokemons[random.randint(0, len(self._pokemons))]
-        if self._opponent_pokemon == self._user_pokemon:
+        self._opponent_pokemon = self._pokemons[random.randint(0, len(self._pokemons)-1)]
+        # Let's use the name as a unique identifier of the player -> we know these to be unique
+        if self._opponent_pokemon.get_name() == self._user_pokemon.get_name():
             self.randomize_opponent()
