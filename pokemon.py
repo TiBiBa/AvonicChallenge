@@ -1,6 +1,7 @@
 class Pokemon:
     _name = ""
     _category = ""  # Fixme: either add support for type calculation or remove this variable
+    _moves = []  # Fixme: either add support for moves or remove this variable
     _max_health = 0
     _health = 0
     _attack = 0
@@ -24,6 +25,9 @@ class Pokemon:
     def get_max_health(self):
         return self._max_health
 
+    def take_damage(self, damage):
+        self._health = max(0, self._health - damage)
+
     def get_attack(self):
         return self._attack
 
@@ -34,5 +38,5 @@ class Pokemon:
         return self._speed
 
     def list_moves(self):
-        # Todo: This is hard-coded for now, would be nice to use the Move class for this
+        # Todo: This is hard-coded for now, would be nice to use the Move class for this and add multiple moves
         print("(a) - Tackle")

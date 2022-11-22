@@ -1,4 +1,5 @@
 import copy
+import random
 from pokemon import Pokemon
 
 
@@ -6,6 +7,7 @@ class Battle:
     _player = None
     _opponent = None
     _turn = 0
+    _mis_change = 0.05
     _critical_hit_change = 0.05
 
     def __init__(self):
@@ -33,15 +35,19 @@ class Battle:
 
     def print_health_bar(self, pokemon: Pokemon):
         print(pokemon.get_name())
-        remaining_health = round((pokemon.get_health() / pokemon.get_health()) * 40)
+        if pokemon.get_health() > 0:
+            remaining_health = round((pokemon.get_health() / pokemon.get_health()) * 40)
+        else:
+            remaining_health = 0
         print(f"[{'=' * remaining_health}{'-' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
 
     def user_attack(self):
         self._player.list_moves()
         attack = input("What move do you want to use? ")
+        self.attack(self._player, self._opponent)
 
     def computer_attack(self):
-        pass
+        self.attack(self._opponent, self._player)
 
     def set_starter(self):
         if self._player.get_speed() >= self._opponent.get_speed():
@@ -64,9 +70,17 @@ class Battle:
         # Toggle between 0 and 1
         self._turn = (self._turn + 1) % 2
 
-    def calculate_damage(self):
-        # Use a max() to make sure we don't return a negative damage
-        return max(0, self._player.get_attack() * 2 - self._opponent.get_defense())
+    def attack(self, attacker: Pokemon, defender: Pokemon):
+        base_damage = attacker.get_attack() * 2 - defender.get_defense()
+        if random.random() <= self._mis_change:
+            damage = 0
+        else:
+            damage = base_damage * 2 if random.random() <= self._critical_hit_change else base_damage
+        damage = max(0, damage)
+        if damage > 0:
+            defender.take_damage(damage)
+        else:
+            print("Your attack missed or didn't do any damage!")
 
     def is_finished(self):
         return self._player.get_health() == 0 or self._opponent.get_health() == 0
@@ -77,4 +91,5 @@ class Battle:
         return self._opponent.get_name()
 
     def show_conclusion(self):
-        pass
+        print("The game is finished!")
+        self.print_battle()
