@@ -38,10 +38,14 @@ class Battle:
     def print_health_bar(self, pokemon: Pokemon):
         print(f"{pokemon.get_name()} - lvl.{pokemon.get_level()}")
         if pokemon.get_health() > 0:
-            remaining_health = round((pokemon.get_health() / pokemon.get_max_health()) * 40)
+            remaining_health = round(
+                (pokemon.get_health() / pokemon.get_max_health()) * 40
+            )
         else:
             remaining_health = 0
-        print(f"[{'=' * remaining_health}{'_' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
+        print(
+            f"[{'=' * remaining_health}{'_' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}"
+        )
 
     def user_attack(self):
         print("It is your turn to attack!")
@@ -77,14 +81,22 @@ class Battle:
         damage = 0
         if random.random() > self._mis_change:
             base_damage = ((2 * level) / 5) * (attack / defense)
-            damage = base_damage * 1.5 if random.random() <= self._critical_hit_change else base_damage
+            damage = (
+                base_damage * 1.5
+                if random.random() <= self._critical_hit_change
+                else base_damage
+            )
         return round(max(0, damage))
 
     def attack(self, attacker: Pokemon, defender: Pokemon):
-        damage = self.calculate_damage(attacker.get_level(), attacker.get_attack(), defender.get_defense())
+        damage = self.calculate_damage(
+            attacker.get_level(), attacker.get_attack(), defender.get_defense()
+        )
         if damage > 0:
             defender.take_damage(damage)
-            print(f"{attacker.get_name()} does {damage} damage to {defender.get_name()}")
+            print(
+                f"{attacker.get_name()} does {damage} damage to {defender.get_name()}"
+            )
         else:
             print("Your attack missed or didn't do any damage!")
 

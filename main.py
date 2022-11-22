@@ -11,15 +11,17 @@ from game import Game
 # Considerations:
 # - Leave moves out-of-scope for now -> focus on the actual stats comparison and fight
 
+
 class Main:
-    valid_options = {'a', 's', 'd', 'q'}
+    valid_options = {"a", "s", "d", "q"}
 
     def __init__(self):
         self.game = Game()
         self.welcome_screen()
 
     def welcome_screen(self):
-        print('''Welcome, to this turn-by-turn console-based Pokémon game!
+        print(
+            """Welcome, to this turn-by-turn console-based Pokémon game!
 ------------------------------------------------------------
 ⠸⣷⣦⠤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⠀⠀⠀
 ⠀⠙⣿⡄⠈⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⠊⠉⣿⡿⠁⠀⠀⠀
@@ -36,7 +38,8 @@ class Main:
 ⠀⠀⠀⢶⣗⠧⡀⢳⠀⠀⠀⠀⢸⣀⣸⠀⠀⠀⢀⡜⠀⣸⢤⣶⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠈⠻⣿⣦⣈⣧⡀⠀⠀⢸⣿⣿⠀⠀⢀⣼⡀⣨⣿⡿⠁⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠈⠻⠿⠿⠓⠄⠤⠘⠉⠙⠤⢀⠾⠿⣿⠟⠋
-------------------------------------------------------------''')
+------------------------------------------------------------"""
+        )
         self.menu()
 
     def menu(self):
@@ -54,11 +57,11 @@ class Main:
             print("You made an invalid choice, try again!\n")
             return self.menu()
         else:
-            if choice == 'a':
+            if choice == "a":
                 self.game.select_pokemon()
-            elif choice == 's' and self.game.pokemon_selected():
+            elif choice == "s" and self.game.pokemon_selected():
                 self.game.start_battle()
-            elif choice == 'd':
+            elif choice == "d":
                 self.game.list_pokemons()
             else:
                 print("Thanks for playing!")
