@@ -31,9 +31,7 @@ class Game:
             print("One or more of your input values in invalid!")
             print(f"The issue occurs at the following Pokémon: {data.get('name')}")
             exit(1)
-        pokemon = Pokemon(
-            data.get("name"), data.get("type"), health, attack, defense, speed
-        )
+        pokemon = Pokemon(data.get("name"), data.get("type"), health, attack, defense, speed)
         self._pokemons.append(pokemon)
 
     def select_pokemon(self):
@@ -46,9 +44,7 @@ class Game:
             else:
                 # We use the -1 to make sure the Pokémons listed start with 1. instead of 0.
                 self._user_pokemon = self._pokemons[choice - 1]
-                print(
-                    f"You've selected {self._user_pokemon.get_name()} as your Pokémon!"
-                )
+                print(f"You've selected {self._user_pokemon.get_name()} as your Pokémon!")
         except ValueError:
             print("This index is invalid, try again!")
             self.select_pokemon()
@@ -71,8 +67,6 @@ class Game:
         self._battle.show_conclusion()
 
     def randomize_opponent(self):
-        self._opponent_pokemon = self._pokemons[
-            random.randint(0, len(self._pokemons) - 1)
-        ]
+        self._opponent_pokemon = self._pokemons[random.randint(0, len(self._pokemons) - 1)]
         if self._opponent_pokemon.get_name() == self._user_pokemon.get_name():
             self.randomize_opponent()

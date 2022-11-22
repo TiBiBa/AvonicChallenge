@@ -11,25 +11,12 @@ class Pokemon:
     _defense = 0
     _speed = 0
 
-    def __init__(
-        self,
-        name: str,
-        category: str,
-        health: int,
-        attack: int,
-        defense: int,
-        speed: int,
-    ):
+    def __init__(self, name: str, category: str, health: int, attack: int, defense: int, speed: int):
         self._name = name
         self._category = category
-        self._moves = [
-            "Tackle",
-            "Quick Attack",
-        ]  # This is hard-coded for now, would be nice to use a separate Move class
+        self._moves = ["Tackle", "Quick Attack", "Cut", "Strength"]
         self._level = 50
-        self._max_health = (
-            self._health
-        ) = health  # Set both equal to health -> reduce _health only in Battle
+        self._max_health = (self._health) = health
         self._attack = attack
         self._defense = defense
         self._speed = speed
@@ -57,6 +44,9 @@ class Pokemon:
 
     def get_speed(self):
         return self._speed
+
+    def get_moves(self):
+        return self._moves
 
     def list_moves(self):
         index = 1
