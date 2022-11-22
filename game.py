@@ -35,8 +35,7 @@ class Game:
         self._pokemons.append(pokemon)
 
     def select_pokemon(self):
-        self.list_pokemons()
-        choice = input("Which Pokémon would you like to choice? ")
+        choice = input("Enter the Pokédex value of your choice (1 - 151): ")
         try:
             choice = int(choice)
             if choice < 1 or choice > len(self._pokemons):
@@ -45,6 +44,7 @@ class Game:
             else:
                 # We use the -1 to make sure the Pokémons listed start with 1. instead of 0.
                 self._user_pokemon = self._pokemons[choice-1]
+                print(f"You've selected {self._user_pokemon.get_name()} as your Pokémon!")
         except ValueError:
             print("This index is invalid, try again!")
             self.select_pokemon()
@@ -60,13 +60,14 @@ class Game:
 
     def start_battle(self):
         self.randomize_opponent()
-        self._battle.clear_battlefield()
+        self._battle.clear_battle()
         self._battle.set_players(self._user_pokemon, self._opponent_pokemon)
+        self._battle.start_battle()
         while not self._battle.is_finished():
             self._battle.play_turn()
+        self._battle.show_conclusion()
 
     def randomize_opponent(self):
         self._opponent_pokemon = self._pokemons[random.randint(0, len(self._pokemons)-1)]
-        # Let's use the name as a unique identifier of the player -> we know these to be unique
         if self._opponent_pokemon.get_name() == self._user_pokemon.get_name():
             self.randomize_opponent()
