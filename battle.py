@@ -20,8 +20,7 @@ class Battle:
         self._opponent = None
         self._turn = 0
 
-    def set_players(self, player, opponent):
-        # We want to keep the original Pokémon data intact -> deepcopy the objects
+    def set_players(self, player: Pokemon, opponent: Pokemon):
         self._player = copy.deepcopy(player)
         self._opponent = copy.deepcopy(opponent)
 
@@ -65,7 +64,7 @@ class Battle:
             print("It is your turn to attack!")
             self.user_attack()
         else:
-            print("It is the computers turn to attack!")
+            print("It is the opponents turn to attack!")
             self.computer_attack()
         self.switch_turn()
 
@@ -74,7 +73,7 @@ class Battle:
         self._turn = (self._turn + 1) % 2
 
     # Loosely based on https://gamerant.com/pokemon-damage-calculation-help-guide/
-    def calculate_damage(self, level, attack, defense):
+    def calculate_damage(self, level: int, attack: int, defense: int):
         damage = 0
         base_damage = ((2 * level) / 5) * (attack / defense)
         if random.random() > self._mis_change:

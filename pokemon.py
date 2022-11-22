@@ -31,7 +31,7 @@ class Pokemon:
     def get_max_health(self):
         return self._max_health
 
-    def take_damage(self, damage):
+    def take_damage(self, damage: int):
         self._health = max(0, self._health - damage)
 
     def get_attack(self):
