@@ -29,10 +29,9 @@ Select one of the following options:
 (q) Quit
 ```
 
-To install and run use the following steps:
+To run in a virtual environment use the following steps:
 ```
 $ python3 -m venv .env
 $ source .env/bin/activate
-(.env)$ pip install -r requirements.txt
 (.env)$ python main.py
 ```
