@@ -49,8 +49,8 @@ class Game:
             print("This index is invalid, try again!")
             self.select_pokemon()
 
-    def get_selected_pokemon(self):
-        return self._user_pokemon if self._user_pokemon else None
+    def pokemon_selected(self):
+        return True if self._user_pokemon else False
 
     def list_pokemons(self):
         index = 1
