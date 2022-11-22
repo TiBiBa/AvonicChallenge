@@ -33,10 +33,10 @@ class Battle:
     def print_health_bar(self, pokemon: Pokemon):
         print(f"{pokemon.get_name()} - lvl.{pokemon.get_level()}")
         if pokemon.get_health() > 0:
-            remaining_health = round((pokemon.get_health() / pokemon.get_max_health()) * 40)
+            remaining_health = round((pokemon.get_health() / pokemon.get_max_health()) * 60)
         else:
             remaining_health = 0
-        print(f"[{'=' * remaining_health}{'_' * (40 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
+        print(f"[{'=' * remaining_health}{'_' * (60 - remaining_health)}] {pokemon.get_health()}/{pokemon.get_max_health()}")
 
     def user_attack(self):
         print("It is your turn to attack!")
