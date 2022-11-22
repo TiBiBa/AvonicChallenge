@@ -64,7 +64,6 @@ class Game:
 
     def start_battle(self):
         self.randomize_opponent()
-        self._battle.clear_battle()
         self._battle.set_players(self._user_pokemon, self._opponent_pokemon)
         self._battle.start_battle()
         while not self._battle.is_finished():

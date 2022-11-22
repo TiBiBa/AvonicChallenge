@@ -15,11 +15,6 @@ class Battle:
     def __init__(self):
         pass
 
-    def clear_battle(self):
-        self._player = None
-        self._opponent = None
-        self._turn = 0
-
     def set_players(self, player: Pokemon, opponent: Pokemon):
         self._player = copy.deepcopy(player)
         self._opponent = copy.deepcopy(opponent)
