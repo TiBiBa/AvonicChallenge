@@ -51,7 +51,7 @@ class Main:
 
         choice = input("\nWhat would you like to do? ")
         if choice not in self.valid_options:
-            print("You made an invalid choice, try again!\n\n")
+            print("You made an invalid choice, try again!\n")
             return self.menu()
         else:
             if choice == 'a':

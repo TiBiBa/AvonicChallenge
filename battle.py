@@ -100,6 +100,5 @@ class Battle:
         return self._player.get_name()
 
     def show_conclusion(self):
-        print("The game is finished!")
         self.print_battle()
         print(f"And the winner is.... {self.get_winner()}")
