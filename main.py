@@ -1,17 +1,6 @@
 from game import Game
 
 
-# A short overview for my own clarity:
-# - We have a main, that contains a game
-# - A game consist of Pokémons
-# - A Pokémon consists of moves
-# - A game can contain a Battle
-# - A battle contains two Pokémons
-
-# Considerations:
-# - Leave moves out-of-scope for now -> focus on the actual stats comparison and fight
-
-
 class Main:
     valid_options = {"a", "s", "d", "q"}
 

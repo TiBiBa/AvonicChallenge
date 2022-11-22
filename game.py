@@ -34,14 +34,13 @@ class Game:
         self._pokemons.append(pokemon)
 
     def select_pokemon(self):
-        choice = input("Enter the Pokédex value of your choice (1 - 151): ")
+        choice = input(f"Enter the Pokédex value of your choice (1 - {len(self._pokemons)}): ")
         try:
             choice = int(choice)
             if choice < 1 or choice > len(self._pokemons):
                 print("This index is invalid, try again!")
                 self.select_pokemon()
             else:
-                # We use the -1 to make sure the Pokémons listed start with 1. instead of 0.
                 self._user_pokemon = self._pokemons[choice - 1]
                 print(f"You've selected {self._user_pokemon.get_name()} as your Pokémon!")
         except ValueError:
