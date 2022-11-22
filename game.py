@@ -21,7 +21,6 @@ class Game:
                 self.add_pokemon(pokemon)
 
     def add_pokemon(self, data: dict):
-        # All data is provided as a strings -> cast the relevant values to an int
         try:
             health = int(data.get("health"))
             attack = int(data.get("attack"))

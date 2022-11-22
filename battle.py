@@ -2,6 +2,7 @@ import copy
 import random
 from time import sleep
 
+from move import Move
 from pokemon import Pokemon
 
 
@@ -9,7 +10,6 @@ class Battle:
     _player = None
     _opponent = None
     _turn = 0
-    _mis_change = 0.05
     _critical_hit_change = 0.05
 
     def __init__(self):
@@ -41,14 +41,15 @@ class Battle:
     def user_attack(self):
         print("It is your turn to attack!")
         self._player.list_moves()
-        move = input("What move do you want to use? ")
+        move_index = input("What move do you want to use? ")
         try:
-            move = int(move)
-            if move < 1 or move > len(self._player.get_moves()):
+            move_index = int(move_index)
+            if move_index < 1 or move_index > len(self._player.get_moves()):
                 print("This move is invalid, try again!")
                 self.user_attack()
             else:
-                self.attack(self._player, self._opponent)
+                move = self._player.get_move(move_index)
+                self.attack(move, self._player, self._opponent)
         except ValueError:
             print("This move is invalid, try again!")
             self.user_attack()
@@ -56,7 +57,9 @@ class Battle:
     def computer_attack(self):
         print("It is the opponents turn to attack!")
         sleep(2)
-        self.attack(self._opponent, self._player)
+        move_index = random.randint(1, len(self._opponent.get_moves()))
+        move = self._opponent.get_move(move_index)
+        self.attack(move, self._opponent, self._player)
 
     def set_starter(self):
         if self._player.get_speed() >= self._opponent.get_speed():
@@ -77,22 +80,18 @@ class Battle:
         self._turn = (self._turn + 1) % 2
 
     # Loosely based on https://gamerant.com/pokemon-damage-calculation-help-guide/
-    def calculate_damage(self, level: int, attack: int, defense: int):
+    def calculate_damage(self, level: int, move_damage: int, accuracy: int, attack: int, defense: int):
         damage = 0
-        if random.random() > self._mis_change:
-            base_damage = ((2 * level) / 5) * (attack / defense)
-            damage = (
-                base_damage * 1.5
-                if random.random() <= self._critical_hit_change
-                else base_damage
-            )
+        if random.randint(0, 100) < accuracy:
+            base_damage = ((((2 * level) / 5) + 2) * move_damage * (attack / defense) / 50) + 2
+            damage = base_damage * 1.5 if random.random() <= self._critical_hit_change else base_damage
         return round(max(0, damage))
 
-    def attack(self, attacker: Pokemon, defender: Pokemon):
-        damage = self.calculate_damage(attacker.get_level(), attacker.get_attack(), defender.get_defense())
+    def attack(self, move: Move, attacker: Pokemon, defender: Pokemon):
+        damage = self.calculate_damage(attacker.get_level(), move.get_damage(), move.get_accuracy(), attacker.get_attack(), defender.get_defense())
         if damage > 0:
             defender.take_damage(damage)
-            print(f"{attacker.get_name()} does {damage} damage to {defender.get_name()}")
+            print(f"{attacker.get_name()} attacks with {move.get_name()} and does {damage} damage to {defender.get_name()}")
         else:
             print("Your attack missed or didn't do any damage!")
 
