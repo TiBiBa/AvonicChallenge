@@ -4,7 +4,15 @@ class Battle:
     _turn = 0
     _critical_hit_change = 0.05
 
-    def __init__(self, player, opponent):
+    def __init__(self):
+        pass
+
+    def clear_battlefield(self):
+        self._player = None
+        self._opponent = None
+        self._turn = 0
+
+    def set_players(self, player, opponent):
         self._player = player
         self._opponent = opponent
 
