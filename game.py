@@ -71,10 +71,8 @@ class Game:
         return True if self._user_pokemon else False
 
     def list_pokemons(self):
-        index = 1
-        for pokemon in self._pokemons:
-            print(f"{index} - {pokemon.get_name()}")
-            index += 1
+        for index, pokemon in enumerate(self._pokemons):
+            print(f"{index+1} - {pokemon.get_name()}")
 
     def start_battle(self):
         self.randomize_opponent()

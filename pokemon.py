@@ -50,7 +50,5 @@ class Pokemon:
         return self._moves
 
     def list_moves(self):
-        index = 1
-        for move in self._moves:
-            print(f"[{index}] - {move.get_name()}")
-            index += 1
+        for index, move in enumerate(self._moves):
+            print(f"[{index+1}] - {move.get_name()}")
