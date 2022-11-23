@@ -1,5 +1,7 @@
 import random
 import csv
+import sys
+
 from battle import Battle
 from move import Move
 from pokemon import Pokemon
@@ -18,7 +20,7 @@ class Game:
         self._battle = Battle()
 
     def initialize_moves(self):
-        with open("moves.csv", mode="r") as file:
+        with open("moves.csv", mode="r", encoding="utf8") as file:
             content = csv.DictReader(file, delimiter=";")
             for move in content:
                 self.add_move(move)
@@ -30,12 +32,12 @@ class Game:
         except ValueError:
             print("One or more of your input values in invalid!")
             print(f"The issue occurs at the following Move: {data.get('name')}")
-            exit(1)
+            sys.exit()
         move = Move(data.get("name"), damage, accuracy)
         self._moves.append(move)
 
     def initialize_pokemon(self):
-        with open("pokemon.csv", mode="r") as file:
+        with open("pokemon.csv", mode="r", encoding="utf8") as file:
             content = csv.DictReader(file, delimiter=";")
             for pokemon in content:
                 self.add_pokemon(pokemon)
@@ -49,7 +51,7 @@ class Game:
         except ValueError:
             print("One or more of your input values in invalid!")
             print(f"The issue occurs at the following Pokémon: {data.get('name')}")
-            exit(1)
+            sys.exit(1)
         pokemon = Pokemon(data.get("name"), data.get("type"), self._moves, health, attack, defense, speed)
         self._pokemons.append(pokemon)
 

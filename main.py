@@ -1,3 +1,5 @@
+import sys
+
 from game import Game
 
 
@@ -44,16 +46,15 @@ class Main:
         if choice not in self.valid_options:
             print("You made an invalid choice, try again!\n")
             return self.menu()
+        if choice == "a":
+            self.game.select_pokemon()
+        elif choice == "s" and self.game.pokemon_selected():
+            self.game.start_battle()
+        elif choice == "d":
+            self.game.list_pokemons()
         else:
-            if choice == "a":
-                self.game.select_pokemon()
-            elif choice == "s" and self.game.pokemon_selected():
-                self.game.start_battle()
-            elif choice == "d":
-                self.game.list_pokemons()
-            else:
-                print("Thanks for playing!")
-                exit(1)
+            print("Thanks for playing!")
+            sys.exit()
         self.menu()
 
 

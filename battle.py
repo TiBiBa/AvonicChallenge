@@ -102,7 +102,7 @@ class Battle:
     def _get_winner(self):
         if not self.is_finished():
             print("The game is not finished yet!")
-            return
+            return None
         if self._player.get_health() == 0:
             return self._opponent.get_name()
         return self._player.get_name()
